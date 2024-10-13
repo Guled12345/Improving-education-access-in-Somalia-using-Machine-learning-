@@ -108,7 +108,7 @@ print(report)
 
 misclassified = np.where(y_test != y_pred.flatten())[0]
 print(f"\nNumber of Misclassified Samples: {len(misclassified)}")
-print(f"Indices of Misclassified Samples: {misclassified}")
+print(f"Indices of Misclassified Samples: {misclassified}") ```
 
 
 ## Conclusion
