@@ -80,6 +80,37 @@ I save the trained models for future use.
 basic_model.save('saved_models/basic_model.h5')
 optimized_model.save('saved_models/optimized_model.h5') ```
 
+
+## Error Analysis
+
+After training our models, we performed an error analysis to understand how well the models generalize. We used the following methods:
+
+1. **Confusion Matrix**: Helps visualize the performance of the model by showing true positives, true negatives, false positives, and false negatives.
+
+2. **Classification Report**: Provides metrics such as precision, recall, F1-score, and accuracy.
+
+3. **Misclassified Samples**: We identified the samples where the model predictions differed from the actual labels.
+
+### Code for Error Analysis
+```python
+import numpy as np
+from sklearn.metrics import confusion_matrix, classification_report
+
+y_pred = (basic_model.predict(X_test) > 0.5).astype("int32")
+
+cm = confusion_matrix(y_test, y_pred)
+print("Confusion Matrix:")
+print(cm)
+
+report = classification_report(y_test, y_pred)
+print("\nClassification Report:")
+print(report)
+
+misclassified = np.where(y_test != y_pred.flatten())[0]
+print(f"\nNumber of Misclassified Samples: {len(misclassified)}")
+print(f"Indices of Misclassified Samples: {misclassified}")
+
+
 ## Conclusion
 This project demonstrates how model performance can be improved through techniques such as dropout and regularization. The optimized model, with these enhancements, is expected to show better generalization on unseen data.
 
